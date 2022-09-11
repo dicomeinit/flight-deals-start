@@ -14,11 +14,10 @@ class NotificationManager:
     def __init__(self):
         self.client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-    def send_message(self, message):
+    def send_emails(self, message):
         message = self.client.messages.create(
             body=message,
             from_=TWILIO_PHONE_NUMBER,
             to=MY_PHONE_NUMBER,
         )
         print(message.sid)
-
