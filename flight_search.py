@@ -8,12 +8,13 @@ TEQUILA_API_KEY = "J6aFkqW3GOA-mqovBIV726BOnvSdgPlJ"
 
 class FlightSearch:
 
-    def get_destination_code(self, city_name):
+    def get_destination_codes(self, city_name):
         location_endpoint = f"{TEQUILA_ENDPOINT}/locations/query"
         headers = {"apikey": TEQUILA_API_KEY}
         query = {"term": city_name, "location_types": "city"}
         response = requests.get(url=location_endpoint, headers=headers, params=query)
         results = response.json()["locations"]
+        # return results
         code = results[0]["code"]
         return code
 
@@ -39,6 +40,7 @@ class FlightSearch:
         )
         try:
             data = response.json()["data"][0]
+
         except IndexError:
             query["max_stopovers"] = 1
             response = requests.get(
@@ -72,3 +74,6 @@ class FlightSearch:
             )
 
             return flight_data
+
+a = FlightSearch()
+print(a.get_destination_codes("Paris"))

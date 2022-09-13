@@ -15,6 +15,7 @@ class DataManager:
         response = requests.get(url=SHEETY_PRICES_ENDPOINT)
         data = response.json()
         self.destination_data = data["prices"]
+        print(self.destination_data)
         return self.destination_data
 
     def update_destination_codes(self):
@@ -38,4 +39,4 @@ class DataManager:
         return self.customer_data
 
 d = DataManager()
-print(d.get_customer_emails())
+print(d.get_destination_data())
